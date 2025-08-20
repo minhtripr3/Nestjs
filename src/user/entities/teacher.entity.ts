@@ -1,24 +1,24 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
-import { User } from './user.entity';
+import { User } from 'src/user/entities/user.entity';
 
 @Entity()
 export class Teacher {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => User)
-  @JoinColumn()
-  user: User;
-
   @Column()
   bio: string;
 
-  @Column('float', { default: 5 })
+  @Column({ type: 'float', default: 5 })
   rating: number;
 
-  @Column('int')
+  @Column()
   price: number;
 
   @Column('text')
   subjects: string;
+
+  @OneToOne(() => User)
+  @JoinColumn()
+  user: User;
 }

@@ -7,9 +7,14 @@ import { User } from './user/entities/user.entity';
 import { Teacher } from './user/entities/teacher.entity';
 import { Booking } from './user/entities/booking.entity';
 import dataSource, { dataSourceOptions } from 'db/data-source';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { TeacherModule } from './teacher/teacher.module';
+import { BookingModule } from './booking/booking.module';
+
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions), UserModule],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions), UserModule, AuthModule, ConfigModule.forRoot(), TeacherModule, BookingModule,],
   controllers: [AppController],
   providers: [AppService],
 })
